@@ -10,7 +10,7 @@
                     <a href="index.view.php">Home</a>
                     <a href="clothes.view.php">Clothes</a>
                     <a href="shoes.view.php">Shoes</a>
-                    <a href="accesoris.view.php">Accesoris</a>
+                    <a href="/resources/views/accesoris-page.blade.php">Accesoris</a>
                     <a href="allItems.view.php">All Items</a>
                     </li>
                 </ul>
