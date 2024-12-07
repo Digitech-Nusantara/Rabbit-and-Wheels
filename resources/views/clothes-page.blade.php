@@ -13,7 +13,7 @@
     <!-- navbarCss -->
     
     <!-- globalCss -->
-    <link rel="stylesheet" href="global.css">
+    <link rel="stylesheet" href="{{ asset('css/global.css') }}">
     <!-- globalCss -->
 
     <!-- boxicons link -->
