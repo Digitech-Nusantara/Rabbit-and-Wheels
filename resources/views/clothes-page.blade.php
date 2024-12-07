@@ -93,14 +93,13 @@
                 <p class="mt-1 text-lg font-medium text-gray-900">$35</p>
                 </a>
                 
-                <!-- More products... -->
             </div>
             </div>
         </div>
     <!-- product list -->
     
     <!-- footer -->
-    
+    <x-footer></x-footer>
     <!-- footer -->
 </body>
 </html>

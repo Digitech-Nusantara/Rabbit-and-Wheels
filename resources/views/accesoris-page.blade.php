@@ -97,7 +97,7 @@
 <!-- product list -->
 
     <!-- footer -->
-    
+    <x-footer></x-footer>
     <!-- footer -->
 </body>
 </html>
