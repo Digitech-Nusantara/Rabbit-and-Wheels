@@ -7,13 +7,13 @@
     <!-- tailwind -->
     <link rel="stylesheet" href="{{ asset('css/style.css') }}">
     <!-- tailwind -->
-
-    <!-- localCss -->
+    
+    <!-- navbarCss -->
     <link rel="stylesheet" href="{{ asset('css/navbar.css') }}">
-    <!-- localCss -->
+    <!-- navbarCss -->
     
     <!-- globalCss -->
-    <link rel="stylesheet" href="global.css">
+    <link rel="stylesheet" href="{{ asset('css/global.css') }}">
     <!-- globalCss -->
 
     <!-- boxicons link -->
