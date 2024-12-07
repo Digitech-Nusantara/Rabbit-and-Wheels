@@ -1,0 +1,41 @@
+/* navbar-start */
+.nav-wrapper {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: rgb(203, 201, 201);
+    font-size: 20px;
+    padding: 20px;
+    margin-bottom: 12px;
+}
+
+.nav-wrapper a {
+    text-decoration: none;
+    color: black;
+    font-weight: bold;
+    margin: 16px;
+}
+
+.nav-wrapper li {
+    list-style-type: none;
+}
+
+.nav-wrapper img {
+    padding: 0 80px 0 0;
+}
+
+.userChart{
+    display:flex;
+}
+
+.userChart img {
+    padding: 2px 6px;
+}
+
+.userChart a {
+    margin: 0;
+    padding: 0;
+}
+
+
+/* navbar-end */
