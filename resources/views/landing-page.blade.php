@@ -236,7 +236,7 @@
 <footer class="footer">
 
 <div class="footer-content">
-    <img src="" alt="logo">
+    <P>SYRIOUS</P>
     <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Excepturi, nostrum!</p>
 
     <div class="icons">
