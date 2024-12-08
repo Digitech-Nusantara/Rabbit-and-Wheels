@@ -16,11 +16,10 @@ return new class extends Migration
 			$table->string('name');
 			$table->integer('price');
 			$table->integer('size');
-			$table->integer('size');
 			$table->string('color');
 			$table->integer('stock');
-			$table->binary('photo', length: 10485760); // Max size of photo file is 10 mb
-			$table->string('description');
+			$table->binary('photo'); // Max size of photo file is 10 mb or 10485760 kb
+			$table->text('description');
 			$table->foreignId('subcategory_id')->constrained(
 				table: 'subcategories', indexName: 'products_subcategory_id'
 			);
