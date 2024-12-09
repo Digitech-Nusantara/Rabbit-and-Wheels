@@ -190,7 +190,7 @@
                 <img src="../img/Dragonlord placidusax pc.png" alt="sample1" width="200">
                 <h2>Lorem, ipsum.</h2>
                 <p>Lorem ipsum dolor sit amet.</p>
-                <a href="cardDetail.html">
+                <a href="#"> <!-- belum di route (buat pindah halaman) -->
                     <button class="button">See Detail</button>
                 </a>
             </div>
@@ -198,7 +198,7 @@
                 <img src="../img/Dragonlord placidusax pc.png" alt="sample1" width="200">
                 <h2>Lorem, ipsum.</h2>
                 <p>Lorem ipsum dolor sit amet.</p>
-                <a href="cardDetail.html">
+                <a href="#"> <!-- belum di route (buat pindah halaman) -->
                     <button class="button">See Detail</button>
                 </a>
             </div>
@@ -206,7 +206,7 @@
                 <img src="../img/Dragonlord placidusax pc.png" alt="sample1" width="200">
                 <h2>Lorem, ipsum.</h2>
                 <p>Lorem ipsum dolor sit amet.</p>
-                <a href="cardDetail.html">
+                <a href="#"> <!-- belum di route (buat pindah halaman) -->
                     <button class="button">See Detail</button>
                 </a>
             </div>
@@ -214,7 +214,7 @@
                 <img src="../img/Dragonlord placidusax pc.png" alt="sample1" width="200">
                 <h2>Lorem, ipsum.</h2>
                 <p>Lorem ipsum dolor sit amet.</p>
-                <a href="cardDetail.html">
+                <a href="#"> <!-- belum di route (buat pindah halaman) -->
                     <button class="button">See Detail</button>
                 </a>
             </div>
@@ -222,7 +222,7 @@
                 <img src="../img/Dragonlord placidusax pc.png" alt="sample1" width="200">
                 <h2>Lorem, ipsum.</h2>
                 <p>Lorem ipsum dolor sit amet.</p>
-                <a href="cardDetail.html">
+                <a href="#"> <!-- belum di route (buat pindah halaman) -->
                     <button class="button">See Detail</button>
                 </a>
 
@@ -236,7 +236,7 @@
 <footer class="footer">
 
 <div class="footer-content">
-    <img src="" alt="logo">
+    <P>SYRIOUS</P>
     <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Excepturi, nostrum!</p>
 
     <div class="icons">
