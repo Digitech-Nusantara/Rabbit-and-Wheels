@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\SessionController;
 use App\Models\Product;
 use Illuminate\Support\Facades\Route;
 
@@ -26,3 +27,6 @@ Route::get('/all-items', function () {
 	$products = Product::latest()->get();
     return view('all-items-page', ['title' => 'All Item', 'products' => $products]);
 });
+
+Route::get('/sesi', [SessionController::class, 'index']);
+Route::post('/sesi/login', [SessionController::class, 'login']);
