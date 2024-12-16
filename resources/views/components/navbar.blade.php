@@ -3,17 +3,17 @@
             <nav>
                 <div class="nav-wrapper">
                     <a href="#">
-                        <img src="" alt="logo" />
+                            <p>SYRIOUS</p>
                     </a>
                 <ul>
 
                     <!-- belum di route(buat pindah halaman) -->
                     <li>
-                        <a href="#">Home</a>
-                        <a href="#">Clothes</a>
-                        <a href="#">Shoes</a>
-                        <a href="#">Accesoris</a> 
-                        <a href="#">All Items</a>
+                        <a href="/">Home</a>
+                        <a href="/clothes">Clothes</a>
+                        <a href="/shoes">Shoes</a>
+                        <a href="/accessories">Accesoris</a> 
+                        <a href="/all-items">All Items</a>
                     </li>
                     <!-- belum di route(buat pindah halaman) -->
                     

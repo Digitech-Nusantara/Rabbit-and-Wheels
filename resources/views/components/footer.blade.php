@@ -2,8 +2,12 @@
  <footer class="footer">
 
     <div class="footer-content">
+        //ui//
         <img src="" alt="logo">
         <p>Bringing the World to Your Doorstep!</p>
+        <p>SYRIOUS</p>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Excepturi, nostrum!</p>
+        //main//
     
         <div class="icons">
             <a href="#"><i class='bx bxl-github'></i></a>
