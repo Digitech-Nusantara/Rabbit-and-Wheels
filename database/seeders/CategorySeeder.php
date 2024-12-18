@@ -6,6 +6,7 @@ use App\Models\Category;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Str;
 use GuzzleHttp\Client;
 
 class CategorySeeder extends Seeder
@@ -16,12 +17,13 @@ class CategorySeeder extends Seeder
     public function run(): void
     {
 		// An array filled by categories
-		$categories = ['Home', 'Clothes', 'Shoes', 'Accessories', 'Featured'];
+		$categories = ['Home', 'Clothes', 'Shoes', 'Accessories'];
 
 		// Seeding database with creating some Category object
 		foreach ($categories as $category) {
 			Category::create([
 				'name' => $category,
+				'slug' => Str::of($category)->slug('-'),
 				'created_at' => now(),
 				'updated_at' => now()
 			]);
@@ -43,6 +45,7 @@ class CategorySeeder extends Seeder
 		foreach ($data as $category) {
 			Category::create([
 				'name' => $category['CatName'],
+				'slug' => Str::of($category['CatName'])->slug('-'),
 				'created_at' => now(),
 				'updated_at' => now()
 			]);
@@ -51,6 +54,7 @@ class CategorySeeder extends Seeder
 				foreach ($category['CategoriesArray'] as $subcategory) {
 					DB::table('subcategories')->insert([
 						'name' => $subcategory['CatName'],
+						'slug' => Str::of($subcategory['CatName'])->slug('-'),
 						'category_id' => $category_id,
 						'created_at' => now(),
 						'updated_at' => now()

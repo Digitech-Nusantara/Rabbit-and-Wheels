@@ -13,11 +13,13 @@ return new class extends Migration
     {
         Schema::create('products', function (Blueprint $table) {
             $table->id();
+			$table->string('code')->unique();
 			$table->string('name');
+			$table->string('slug');
 			$table->integer('price');
 			$table->integer('size');
 			$table->string('color');
-			$table->integer('stock');
+			$table->string('in_stock');
 			$table->binary('photo'); // Max size of photo file is 10 mb or 10485760 kb
 			$table->text('description');
 			$table->foreignId('subcategory_id')->constrained(

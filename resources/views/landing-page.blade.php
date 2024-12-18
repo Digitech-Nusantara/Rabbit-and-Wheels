@@ -185,48 +185,17 @@
     </div>
 
     
-        <div class="card-container">
+        <div class="card-container wrapper">
+			@foreach ($products as $product)
             <div class="card">
-                <img src="../img/Dragonlord placidusax pc.png" alt="sample1" width="200">
-                <h2>Lorem, ipsum.</h2>
-                <p>Lorem ipsum dolor sit amet.</p>
-                <a href="#"> <!-- belum di route (buat pindah halaman) -->
+                <img src="{{ $product['photo'] }}" alt="{{ $product['name'] }}" width="200">
+                <h2>{{ $product['name'] }}</h2>
+                <p>{{ Str::limit($product['description'], 50) }}</p>
+                <a href="/{{ Str::lower($product['category_name']) }}/{{ $product['slug'] }}">
                     <button class="button">See Detail</button>
                 </a>
             </div>
-            <div class="card">
-                <img src="../img/Dragonlord placidusax pc.png" alt="sample1" width="200">
-                <h2>Lorem, ipsum.</h2>
-                <p>Lorem ipsum dolor sit amet.</p>
-                <a href="#"> <!-- belum di route (buat pindah halaman) -->
-                    <button class="button">See Detail</button>
-                </a>
-            </div>
-            <div class="card">
-                <img src="../img/Dragonlord placidusax pc.png" alt="sample1" width="200">
-                <h2>Lorem, ipsum.</h2>
-                <p>Lorem ipsum dolor sit amet.</p>
-                <a href="#"> <!-- belum di route (buat pindah halaman) -->
-                    <button class="button">See Detail</button>
-                </a>
-            </div>
-            <div class="card">
-                <img src="../img/Dragonlord placidusax pc.png" alt="sample1" width="200">
-                <h2>Lorem, ipsum.</h2>
-                <p>Lorem ipsum dolor sit amet.</p>
-                <a href="#"> <!-- belum di route (buat pindah halaman) -->
-                    <button class="button">See Detail</button>
-                </a>
-            </div>
-            <div class="card">
-                <img src="../img/Dragonlord placidusax pc.png" alt="sample1" width="200">
-                <h2>Lorem, ipsum.</h2>
-                <p>Lorem ipsum dolor sit amet.</p>
-                <a href="#"> <!-- belum di route (buat pindah halaman) -->
-                    <button class="button">See Detail</button>
-                </a>
-
-            </div>
+			@endforeach
         </div>
     
     </main>
