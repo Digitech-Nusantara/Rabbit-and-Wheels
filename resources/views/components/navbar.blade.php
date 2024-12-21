@@ -18,10 +18,18 @@
                     <!-- belum di route(buat pindah halaman) -->
                     
                 </ul>
-                <div class="userChart">
-                    <a href="">
-                    <img src="../img/search.png" alt="search" width="36px" />
-                    </a>
+                <div class="userChart flex">
+                    {{-- search --}}
+                        <div class="navbar">
+                            <div class="flex-1">
+                            <div class="flex-none gap-2">
+                                <div class="form-control">
+                                <input type="text" placeholder="Search" class="input input-bordered w-24 md:w-auto rounded" />
+                                </div>
+                            </div>
+                            </div>
+                        </div>
+                    {{-- search --}}
                     <a href="">
                     <img src="../img/user.png" alt="user" width="36px" />
                     </a>

@@ -12,7 +12,9 @@
     <link rel="stylesheet" href="https://unpkg.com/boxicons@latest/css/boxicons.min.css">
     <!-- boxicons link -->
 
-    
+    <!-- tailwind -->
+  <link rel="stylesheet" href="{{ asset('css/style.css') }}">
+  <!-- tailwind -->
 
     <style>
     * {
