@@ -3,7 +3,7 @@
             <nav>
                 <div class="nav-wrapper">
                     <a href="#">
-                        <img src="" alt="logo" />
+                        <p>SYRIOUS</p>
                     </a>
                 <ul>
 

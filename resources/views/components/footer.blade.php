@@ -2,7 +2,7 @@
  <footer class="footer">
 
     <div class="footer-content">
-        <img src="" alt="logo">
+        <h3>SYRIOUS</h3>
         <p>Bringing the World to Your Doorstep!</p>
     
         <div class="icons">
@@ -27,3 +27,5 @@
     
     </footer>
     <!-- footer-end -->
+</body>
+</html>

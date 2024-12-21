@@ -3,5 +3,5 @@
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
-    return view('all-items-page');
+    return view('clothes-page');
 });
