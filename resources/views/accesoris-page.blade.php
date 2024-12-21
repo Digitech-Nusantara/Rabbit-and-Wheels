@@ -6,11 +6,16 @@
     <x-navbar></x-navbar>
 <!-- navbar -->
 
-<!-- product list -->
-    <div class="">
+{{-- side-filter --}}
+<x-side-filter></x-side-filter>
+{{-- side-filter --}}
+
+
+    <!-- product list -->
+    <div class="ml-24">
         <div class="mx-auto max-w-2xl px-4 py-16 sm:px-6 sm:py-24 lg:max-w-7xl lg:px-8">
         <h2 class="text-2xl font-bold">Accesoris</h2>
-    
+        
         <div class="grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 xl:gap-x-8">
             <a href="#" class="group">
             <img src="https://tailwindui.com/plus/img/ecommerce-images/product-page-01-related-product-01.jpg" alt="Tall slender porcelain bottle with natural clay textured body and cork stopper." class="aspect-square w-full rounded-lg bg-gray-200 object-cover group-hover:opacity-75 xl:aspect-[7/8]">
