@@ -4,6 +4,9 @@
     <div class="footer-content">
         <h3>SYRIOUS</h3>
         <p>Bringing the World to Your Doorstep!</p>
+        <p>SYRIOUS</p>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Excepturi, nostrum!</p>
+        //main//
     
         <div class="icons">
             <a href="#"><i class='bx bxl-github'></i></a>
