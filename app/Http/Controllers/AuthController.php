@@ -45,23 +45,23 @@ class AuthController extends Controller
 
     public function register(Request $request)
     {
-        // Validate registration input
+        
         $request->validate([
             'name' => 'required|string|max:255',
-            'username' => 'required|string|unique:users|max:255', // Add validation for username
-            'address' => 'required|string|max:255', // Add validation for address
+            'username' => 'required|string|unique:users|max:255', 
+            'address' => 'required|string|max:255', 
             'email' => 'required|email|unique:users',
-            'phone_number' => 'required|string|unique:users|max:20', // Add validation for phone_number
+            'phone_number' => 'required|string|unique:users|max:20', 
             'password' => 'required|min:6|confirmed',
         ]);
 
         // Create new user
         $user = User::create([
             'name' => $request->name,
-            'username' => $request->username,  // Save username
-            'address' => $request->address,    // Save address
+            'username' => $request->username,  
+            'address' => $request->address,    
             'email' => $request->email,
-            'phone_number' => $request->phone_number,  // Save phone_number
+            'phone_number' => $request->phone_number,  
             'password' => bcrypt($request->password),
         ]);
 
