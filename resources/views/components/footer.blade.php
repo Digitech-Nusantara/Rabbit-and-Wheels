@@ -2,8 +2,7 @@
  <footer class="footer">
 
     <div class="footer-content">
-        //ui//
-        <img src="" alt="logo">
+        <h3>SYRIOUS</h3>
         <p>Bringing the World to Your Doorstep!</p>
         <p>SYRIOUS</p>
         <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Excepturi, nostrum!</p>
@@ -31,3 +30,5 @@
     
     </footer>
     <!-- footer-end -->
+</body>
+</html>
