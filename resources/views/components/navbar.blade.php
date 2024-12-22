@@ -22,7 +22,7 @@
                     <a href="">
                     <img src="../img/search.png" alt="search" width="36px" />
                     </a>
-                    <a href="">
+                    <a href="{{ route('auth') }}">
                     <img src="../img/user.png" alt="user" width="36px" />
                     </a>
                     <a href="">
