@@ -1,7 +1,9 @@
 <?php
 
+use App\Http\Controllers\AuthController;
 use App\Http\Controllers\SessionController;
 use App\Models\Product;
+use Illuminate\Container\Attributes\Auth;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -28,5 +30,7 @@ Route::get('/all-items', function () {
     return view('all-items-page', ['title' => 'All Item', 'products' => $products]);
 });
 
-Route::get('/sesi', [SessionController::class, 'index']);
-Route::post('/sesi/login', [SessionController::class, 'login']);
+Route::get('/sesi', [AuthController::class, 'index'])->name('auth');
+Route::post('/sesi', [AuthController::class, 'login']);
+Route::get('/reg', [AuthController::class, 'create'])->name('register');
+Route::post('/reg', [AuthController::class, 'register']);
