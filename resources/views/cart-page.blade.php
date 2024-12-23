@@ -1,11 +1,6 @@
-<x-header></x-header>
-{{-- header --}}
-<body class="bg-gray-100 font-sans leading-normal tracking-normal">
-  {{-- navbar --}}
-  <x-navbar></x-navbar>
-  {{-- navbar --}}
-  
+<x-layout> 
 
+  <x-slot:title>{{ $title }}</x-slot:title>
   <!-- Main Content -->
   <main class="max-w-6xl mx-auto mt-6 px-4">
     <!-- Cart Items -->
@@ -15,7 +10,7 @@
 	@foreach(session('cart') as $id  => $details)
     <div class="bg-white rounded-lg shadow-lg p-6">
       <div class="grid grid-cols-1 md:grid-cols-4 gap-4 items-center border-b pb-4 mb-4">
-        <img src="https://via.placeholder.com/150" alt="Product Image" class="w-full md:w-24 rounded">
+        <img src="{{ $details['photo'] }}" alt="Product Image" class="w-full md:w-24 rounded">
         <div>
           <h2 class="text-lg font-semibold text-gray-800">{{ $details['name'] }}</h2>
           <p class="text-sm text-gray-600">Short product description</p>
@@ -47,7 +42,4 @@
     </div>
   </main>
 
-  {{-- footer --}}
-  <x-footer></x-footer>
-</body>
-</html>
+</x-layout>

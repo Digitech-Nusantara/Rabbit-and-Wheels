@@ -2,7 +2,8 @@
         <header>
             <nav>
                 <div class="nav-wrapper">
-                    <a href="#">
+                    <a href="/">
+						<img src="{{ asset('img/logo-syrious.png') }}" alt="logo" width="36px" />
                         <p>SYRIOUS</p>
                     </a>
                 <ul>
@@ -33,7 +34,7 @@
                     <a href="">
                     <img src="../img/user.png" alt="user" width="36px" />
                     </a>
-                    <a href="">
+                    <a href="/cart">
                     <img src="../img/cart.png" alt="chart" width="36px" />
                     </a>
                 </div>

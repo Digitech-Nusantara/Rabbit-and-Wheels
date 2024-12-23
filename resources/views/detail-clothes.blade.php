@@ -1,11 +1,6 @@
-{{-- header --}}
-<x-header></x-header>
-{{-- header --}}
-<body>
-    <!-- navbar --> 
-    <x-navbar></x-navbar>
-    <!-- navbar --> 
+<x-layout> 
      
+	<x-slot:title>{{ $title }}</x-slot:title>
     <!-- product view -->
      <div class="container grid grid-cols-2 gap-6">
         <!-- product image -->
@@ -145,8 +140,4 @@
          <!-- product content end -->
      </div>
      
-    <x-footer></x-footer>
-     <script src="https://kit.fontawesome.com/23ac0adbe1.js" crossorigin="anonymous"></script>
-</body>
-</body>
-</html>
+</x-layout>

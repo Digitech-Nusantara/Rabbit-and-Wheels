@@ -1,11 +1,6 @@
-{{-- header --}}
-<x-header></x-header>
-{{-- header --}}
-<body>
-    <!-- navbar -->
-    <x-navbar></x-navbar>    
-    <!-- navbar -->
+<x-layout>
 
+	<x-slot:title>{{ $title }}</x-slot:title>
     {{-- side-filter --}}
     <x-side-filter></x-side-filter>
     {{-- side-filter --}}
@@ -23,12 +18,11 @@
 					</a>
 				@endforeach
 			</div>
+			<div class="my-5">
+				{{ $products->links() }}
+			</div>
         </div>
     </div>
 <!-- product list -->
 
-    <!-- footer -->
-    <x-footer></x-footer>
-    <!-- footer -->
-</body>
-</html>
+</x-layout>

@@ -10,7 +10,7 @@ class CartController extends Controller
 	public function showCart() {
 		$cart = session()->get('cart');
 
-		return view('cart-page', compact('cart'));
+		return view('cart-page', compact('cart'), ['title' => 'Cart - Syrious']);
 	}
 
 	public function addToCart(Request $request) {

@@ -1,22 +1,16 @@
-{{-- header --}}
-<x-header></x-header>
-{{-- header --}}
+<x-layout>
 
-<body class="bg-gray-100 font-sans">
-  {{-- navbar --}}
-  <x-navbar></x-navbar>
-  {{-- navbar --}}
-
+  <x-slot:title>{{ $title }}</x-slot:title>
   <!-- Hero Section -->
-  <section class="max-w-6xl mx-auto mt-6 px-4 flex flex-col md:flex-row items-center">
-    <div class="md:w-1/2">
+  <section class="max-w-6xl mx-auto mt-6 px-4 flex flex-col items-center">
+    <div class="md:w-1/2 text-center">
       <h2 class="text-3xl font-bold text-gray-800">Who We Are</h2>
       <p class="mt-4 text-gray-600">
         Welcome to our e-commerce store! Our mission is to provide you with the best online shopping experience by offering high-quality products and excellent customer service.
       </p>
     </div>
     <div class="md:w-1/2 mt-6 md:mt-0">
-      <img src="https://via.placeholder.com/400x300" alt="E-commerce theme" class="rounded-lg shadow-lg">
+      <img src="https://via.placeholder.com/400x300" alt="E-commerce theme" class="mx-auto rounded-lg shadow-lg">
     </div>
   </section>
 
@@ -55,9 +49,4 @@
     </div>
   </section>
 
-  <!-- Footer -->
-  <x-footer></x-footer>
-  <!-- Footer -->
-  
-</body>
-</html>
+</x-layout>
