@@ -3,9 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Models\Product;
+use App\Models\Category;
 use App\Models\Subcategory;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
+use Illuminate\Support\Str;
 use Illuminate\Support\Facades\DB;
 
 class ProductController extends Controller
@@ -76,8 +78,12 @@ class ProductController extends Controller
 					->join('categories', 'subcategories.category_id', '=', 'categories.id')
 					->groupBy('products.name', 'products.slug', 'products.size',
 						'products.in_stock', 'products.description')
-					->orderBy('products.id')
-					->get();
+					->orderBy('products.created_at', 'desc')
+					->paginate(8);
+				$newest = Product::select('products.name', 'products.photo', 'categories.name as category_name')
+					->join('subcategories', 'products.subcategory_id', '=', 'subcategories.id')
+					->join('categories', 'subcategories.category_id', '=', 'categories.id')
+					->orderBy('products.created_at', 'desc')->first();
 				break;
 			case 2:
 			case 3:
@@ -95,11 +101,12 @@ class ProductController extends Controller
 					->whereIn('products.subcategory_id', Subcategory::select('id')->where('category_id', $cat_id)->get())
 					->groupBy('products.name', 'products.slug', 'products.size',
 						'products.in_stock', 'products.description')
-					->orderBy('products.id')->get();
+					->orderBy('products.id')->paginate(8);
+				$newest = null;
 				break;
 		}
 
-		return view($view, ['title' => $title, 'products' => $products]);
+		return view($view, ['title' => $title, 'products' => $products, 'newest' => $newest]);
 	}
 
 	private function getDetailProduct($slug) {
@@ -110,7 +117,11 @@ class ProductController extends Controller
 			->join('products', 'subcategories.id', '=', 'products.subcategory_id')
 			->where('products.slug', $slug)
 			->first();
+		$category = Category::select('categories.name')
+			->join('subcategories', 'categories.id', '=', 'subcategories.category_id')
+			->whereIn('subcategories.name', $subcategory)
+			->first();
 
-		return view('detail-clothes', ['title' => 'Clothes Details', 'products' => $products, 'subcategory' => $subcategory]);
+		return view('detail-'.Str::lower($category->name), ['title' => $category->name.' Details - Syrious', 'products' => $products, 'subcategory' => $subcategory]);
 	}
 }

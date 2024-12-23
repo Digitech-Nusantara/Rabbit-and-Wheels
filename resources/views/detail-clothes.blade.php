@@ -1,11 +1,6 @@
-{{-- header --}}
-<x-header></x-header>
-{{-- header --}}
-<body>
-    <!-- navbar --> 
-    <x-navbar></x-navbar>
-    <!-- navbar --> 
+<x-layout> 
      
+	<x-slot:title>{{ $title }}</x-slot:title>
     <!-- product view -->
      <div class="container grid grid-cols-2 gap-6">
         <!-- product image -->
@@ -130,13 +125,19 @@
                     <!-- single color end -->
                 </div>
          </div>
+		<div>
+			<form action="/cart/add" method="post">
+			@csrf
+				<input type="hidden" name="id" value="{{ $product['id'] }}">
+				<input type="hidden" name="name" value="{{ $product['name'] }}">
+				<input type="hidden" name="photo" value="{{ $product['photo'] }}">
+				<input type="hidden" name="price" value="{{ $product['price'] }}">
+				<button type="submit">Add to Cart!</button>
+			</form>
+		</div>
 
         </div>
          <!-- product content end -->
      </div>
      
-    <x-footer></x-footer>
-     <script src="https://kit.fontawesome.com/23ac0adbe1.js" crossorigin="anonymous"></script>
-</body>
-</body>
-</html>
+</x-layout>

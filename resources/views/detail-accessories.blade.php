@@ -1,22 +1,15 @@
-{{-- header --}}
-<x-header></x-header>
-{{-- header --}}
-<body>
-    <!-- navbar --> 
-    <x-navbar></x-navbar>
-    <!-- navbar --> 
+<x-layout> 
      
+	<x-slot:title>{{ $title }}</x-slot:title>
     <!-- product view -->
      <div class="container grid grid-cols-2 gap-6">
         <!-- product image -->
          <div>
-            <img src="https://tailwindui.com/plus/img/ecommerce-images/product-page-01-related-product-01.jpg" alt="Gambar Baju" class="w-full">
+            <img src="{{ $products[0]['photo'] }}" alt="Gambar Baju" class="w-full">
             <div class="grid grid-cols-5 gap-4 mt-4 ml-10">
-                <img src="https://tailwindui.com/plus/img/ecommerce-images/product-page-01-related-product-01.jpg" alt="Gambar Baju" class="w-full cursor-pointer border border-black">
-                <img src="https://tailwindui.com/plus/img/ecommerce-images/product-page-01-related-product-01.jpg" alt="Gambar Baju" class="w-full cursor-pointer border">
-                <img src="https://tailwindui.com/plus/img/ecommerce-images/product-page-01-related-product-01.jpg" alt="Gambar Baju" class="w-full cursor-pointer border">
-                <img src="https://tailwindui.com/plus/img/ecommerce-images/product-page-01-related-product-01.jpg" alt="Gambar Baju" class="w-full cursor-pointer border">
-                <img src="https://tailwindui.com/plus/img/ecommerce-images/product-page-01-related-product-01.jpg" alt="Gambar Baju" class="w-full cursor-pointer border">
+				@foreach ($products as $product)
+					<img src="{{ $product['photo'] }}" alt="Gambar Baju" class="w-full cursor-pointer border border-black">
+				@endforeach
             </div>
          </div>
          <!-- product image end -->
@@ -24,7 +17,7 @@
 
          <!-- product content -->
          <div>
-            <h2 class="text-3xl font-medium uppercase mb-2">Basic tee</h2>
+            <h2 class="text-3xl font-medium uppercase mb-2">{{ $product['name'] }}</h2>
             <div class="flex items-center mb-4">
             <div class="flex gap-1 text-sm text-yellow-400">
                 <span><i class="fas fa-star"></i></span>
@@ -42,23 +35,23 @@
             </p>
             <p class="space-x-2">
                 <span class="text-gray-800 font-semibold">Brand :</span>
-                <span class="text-gray-600">Erigo</span>
+                <span class="text-gray-600">H&M</span>
             </p>
             <p class="space-x-2">
                 <span class="text-gray-800 font-semibold">Category :</span>
-                <span class="text-gray-600">T-Shirt</span>
+                <span class="text-gray-600">{{ $subcategory['name'] }}</span>
             </p>
             <p class="space-x-2">
                 <span class="text-gray-800 font-semibold">SKU :</span> <!-- sku itu kode produk contoh sku : BT, bt itu basic tee -->
-                <span class="text-gray-600">BT</span>
+                <span class="text-gray-600">{{ $product['id'] }}</span>
             </p>
          </div>
          <div class="flex items-baseline mb-1 space-x-2 font-sans">
-            <p class="text-xl text-red-600 font-semibold">Rp.150.000</p>
-            <p class="text-base text-gray-400 line-through">Rp.200.000</p>
+            <p class="text-xl text-red-600 font-semibold">${{ $product['price'] }}</p>
+            <!-- <p class="text-base text-gray-400 line-through">Rp.200.000</p> -->
          </div>
          <p class="mt-4 text-gray-600">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Doloribus aut sit reprehenderit! Doloremque consequuntur quia ex quos molestiae! Obcaecati, suscipit?
+			{{ $product['description'] }}
          </p>
 
          <!-- size filter -->
@@ -122,37 +115,29 @@
                 <h3 class="text-x1 text-gray-800 mb-3 ippercase font-medium">Color</h3>
                 <div class="felx items-center gap-2">
                     <!-- single color -->
+					@foreach ($products as $product)
                     <div class="color-selector">
-                        <input type="radio" name="color" class="hidden" id="color-red">
-                        <label for="color-red" class="border border-gray-200 rounded-sm h-5 w-5 cursor-pointer shadow-sm block" style="background-color: red">
+                        <input type="radio" name="color" class="hidden" id="color">
+                        <label for="color" class="border border-gray-200 rounded-sm h-5 w-5 cursor-pointer shadow-sm block" style="background-color: {{ $product['color'] }}">
                         </label>
                     </div>
+					@endforeach
                     <!-- single color end -->
-                        <!-- single color -->
-                        <div class="color-selector">
-                            <input type="radio" name="color" class="hidden" id="color-white">
-                            <label for="color-white" style="background-color: grey"
-                                class="text-xs border border-gray-200 rounded-sm h-5 w-5 flex items-center justify-center cursor-pointer shadow-sm">
-                            </label>
-                        </div>
-                        <!-- single color end -->
-                        <!-- single color -->
-                        <div class="color-selector">
-                            <input type="radio" name="color" class="hidden" id="color-black">
-                            <label for="color-black" style="background-color: black"
-                                class="text-xs border border-gray-200 rounded-sm h-5 w-5 flex items-center justify-center cursor-pointer shadow-sm">
-                            </label>
-                        </div>
-                        <!-- single color end -->
                 </div>
          </div>
+		<div>
+			<form action="/cart/add" method="post">
+			@csrf
+				<input type="hidden" name="id" value="{{ $product['id'] }}">
+				<input type="hidden" name="name" value="{{ $product['name'] }}">
+				<input type="hidden" name="photo" value="{{ $product['photo'] }}">
+				<input type="hidden" name="price" value="{{ $product['price'] }}">
+				<button type="submit">Add to Cart!</button>
+			</form>
+		</div>
 
         </div>
          <!-- product content end -->
      </div>
      
-    <x-footer></x-footer>
-     <script src="https://kit.fontawesome.com/23ac0adbe1.js" crossorigin="anonymous"></script>
-</body>
-</body>
-</html>
+</x-layout>
