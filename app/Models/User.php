@@ -2,7 +2,6 @@
 
 namespace App\Models;
 
-// use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -10,44 +9,39 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class User extends Authenticatable
 {
-    /** @use HasFactory<\Database\Factories\UserFactory> */
     use HasFactory, Notifiable;
 
     /**
      * The attributes that are mass assignable.
      *
-     * @var array<int, string>
+     * @var array<string>
      */
     protected $fillable = [
         'name',
+        'username',
+        'address',
         'email',
+        'phone_number',
         'password',
     ];
 
     /**
-     * The attributes that should be hidden for serialization.
+     * The attributes that should be cast to native types.
      *
-     * @var array<int, string>
+     * @var array<string, string>
      */
-    protected $hidden = [
-        'password',
-        'remember_token',
+    protected $casts = [
+        'email_verified_at' => 'datetime',
+        'password' => 'hashed',  // Encrypt password automatically
     ];
 
     /**
-     * Get the attributes that should be cast.
+     * Get the transactions associated with the user.
      *
-     * @return array<string, string>
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
-    protected function casts(): array
+    public function transactions(): HasMany
     {
-        return [
-            'email_verified_at' => 'datetime',
-            'password' => 'hashed',
-        ];
+        return $this->hasMany(Transaction::class, 'admin_id');
     }
-
-	public function transactions(): hasMany {
-		return $this->hasMany(Transaction::class, 'admin_id');
-	}
 }

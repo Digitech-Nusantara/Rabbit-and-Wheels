@@ -8,13 +8,16 @@ return new class extends Migration
 {
     /**
      * Run the migrations.
+     *
+     * @return void
      */
     public function up(): void
     {
+        // Create the 'users' table
         Schema::create('users', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->string('username')->unique;
+            $table->string('username')->unique();  // Added parentheses for 'unique' method
             $table->string('address');
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
@@ -24,12 +27,14 @@ return new class extends Migration
             $table->timestamps();
         });
 
+        // Create the 'password_reset_tokens' table
         Schema::create('password_reset_tokens', function (Blueprint $table) {
             $table->string('email')->primary();
             $table->string('token');
             $table->timestamp('created_at')->nullable();
         });
 
+        // Create the 'sessions' table
         Schema::create('sessions', function (Blueprint $table) {
             $table->string('id')->primary();
             $table->foreignId('user_id')->nullable()->index();
@@ -37,11 +42,14 @@ return new class extends Migration
             $table->text('user_agent')->nullable();
             $table->longText('payload');
             $table->integer('last_activity')->index();
+            $table->timestamps();
         });
     }
 
     /**
      * Reverse the migrations.
+     *
+     * @return void
      */
     public function down(): void
     {

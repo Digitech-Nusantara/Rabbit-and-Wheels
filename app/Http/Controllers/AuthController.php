@@ -48,26 +48,27 @@ class AuthController extends Controller
         // Validate registration input
         $request->validate([
             'name' => 'required|string|max:255',
-            'username' => 'required|string|unique:users|max:255', // Add validation for username
-            'address' => 'required|string|max:255', // Add validation for address
+            'username' => 'required|string|unique:users|max:255',
+            'address' => 'required|string|max:255',
             'email' => 'required|email|unique:users',
-            'phone_number' => 'required|string|unique:users|max:20', // Add validation for phone_number
+            'phone_number' => 'required|string|unique:users|max:20',
             'password' => 'required|min:6|confirmed',
         ]);
 
         // Create new user
-        $user = User::create([
-            'name' => $request->name,
-            'username' => $request->username,  // Save username
-            'address' => $request->address,    // Save address
-            'email' => $request->email,
-            'phone_number' => $request->phone_number,  // Save phone_number
+        $user = User::create($request->only([
+            'name',
+            'username',
+            'address',
+            'email',
+            'phone_number',
+        ]) + [
             'password' => bcrypt($request->password),
         ]);
 
         // Log in the user
         Auth::login($user);
 
-        return redirect()->route('home'); // Redirect to home or dashboard after successful registration
+        return redirect()->route('auth'); // Redirect to home or dashboard after successful registration
     }
 }
