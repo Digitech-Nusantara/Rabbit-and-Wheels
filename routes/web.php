@@ -5,6 +5,7 @@ use App\Models\Product;
 use App\Models\Subcategory;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\CartController;
+use App\Http\Controllers\CategoryController;
 use Illuminate\Support\Facades\Route;
   
 Route::get('/about', function () {
@@ -22,7 +23,7 @@ Route::post('/reg', [AuthController::class, 'register']);
 Route::middleware('auth')->get('/dashboard', function () {
     return view('halaman_auth/dashboard'); 
 })->name('dashboard');
-
+Route::resource('categories', CategoryController::class);
 
 Route::get('/{category?}', ProductController::class);
 Route::get('/{category?}/{productSlug?}', ProductController::class);

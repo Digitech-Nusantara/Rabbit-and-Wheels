@@ -37,7 +37,7 @@
     <div class="sidebar">
         <h3 class="text-center text-white">Dashboard</h3>
         <a href="#">Home</a>
-        <a href="#">Category</a>
+        <a href="{{ route('categories.index') }}">Category</a>
         <a href="#">Product</a>
         <a href="#">Profile</a>
     </div>
