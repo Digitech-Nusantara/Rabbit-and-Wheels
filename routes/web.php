@@ -19,6 +19,9 @@ Route::get('/sesi', [AuthController::class, 'index'])->name('auth');
 Route::post('/sesi', [AuthController::class, 'login']);
 Route::get('/reg', [AuthController::class, 'create'])->name('register');
 Route::post('/reg', [AuthController::class, 'register']);
+Route::middleware('auth')->get('/dashboard', function () {
+    return view('halaman_auth/dashboard'); 
+})->name('dashboard');
 
 
 Route::get('/{category?}', ProductController::class);
