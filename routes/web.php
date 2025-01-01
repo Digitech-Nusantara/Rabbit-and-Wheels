@@ -15,10 +15,14 @@ Route::get('/cart', [CartController::class, 'showCart']);
 Route::post('/cart/add', [CartController::class, 'addToCart']);
 Route::post('/cart/remove', [CartController::class, 'removeFromCart']);
 
-// Route::get('/{category?}', ProductController::class);
-// Route::get('/{category?}/{productSlug?}', ProductController::class);
-
 Route::get('/sesi', [AuthController::class, 'index'])->name('auth');
 Route::post('/sesi', [AuthController::class, 'login']);
 Route::get('/reg', [AuthController::class, 'create'])->name('register');
 Route::post('/reg', [AuthController::class, 'register']);
+Route::middleware('auth')->get('/dashboard', function () {
+    return view('halaman_auth/dashboard'); 
+})->name('dashboard');
+
+
+Route::get('/{category?}', ProductController::class);
+Route::get('/{category?}/{productSlug?}', ProductController::class);
