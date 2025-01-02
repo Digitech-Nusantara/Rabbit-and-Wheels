@@ -83,7 +83,7 @@ class ProductController extends Controller
 					->orderBy('products.created_at', 'desc')
 					->paginate(8);
 				
-				$newest = Product::select('products.name', 'products.photo', 'categories.name as category_name')
+				$newest = Product::select('products.name', 'products.photo', 'products.slug','categories.name as category_name')
 					->join('subcategories', 'products.subcategory_id', '=', 'subcategories.id')
 					->join('categories', 'subcategories.category_id', '=', 'categories.id')
 					->orderBy('products.created_at', 'desc')->first();
@@ -109,12 +109,13 @@ class ProductController extends Controller
 				break;
 		}
 		
-		if (request('category') !== null) {
-			$products = $this->filter(request());
-			return view('all-items-page', ['title' => 'All Items - Syrious', 'products' => $products, 'categories' => $categories, 'subcategories' => $subcategories]);
+		if (empty(request('category')) || empty(request('subcategory'))) {
+			return view($view, ['title' => $title, 'products' => $products, 'newest' => $newest, 'categories' => $categories, 'subcategories' => $subcategories]);
 		}
 
-		return view($view, ['title' => $title, 'products' => $products, 'newest' => $newest, 'categories' => $categories, 'subcategories' => $subcategories]);
+		$products = $this->filter(request());
+		return view('all-items-page', ['title' => 'All Items - Syrious', 'products' => $products, 'categories' => $categories, 'subcategories' => $subcategories]);
+
 	}
 
 	private function getDetailProduct($slug) {
@@ -130,7 +131,7 @@ class ProductController extends Controller
 			->whereIn('subcategories.name', $subcategory)
 			->first();
 
-		return view('detail-'.Str::lower($category->name), ['title' => $category->name.' Details - Syrious', 'products' => $products, 'subcategory' => $subcategory]);
+		return view('detail-'.Str::lower($category->name), ['title' => $category->name . ' Details - Syrious', 'products' => $products, 'subcategory' => $subcategory]);
 	}
 
 	public function search(Request $request)

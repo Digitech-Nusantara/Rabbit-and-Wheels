@@ -18,7 +18,7 @@
 
     <div class="trending text-center mx-auto">
         <h1>Newest</h1>
-		<a href="/{{ Str::lower($product['category_name']) }}/{{ $product['slug'] }}">
+		<a href="/{{ Str::lower($newest['category_name']) }}/{{ $newest['slug'] }}">
 			<img src="{{ $newest['photo'] }}" alt="trendingFoto" width="500">
 		</a>
     </div>

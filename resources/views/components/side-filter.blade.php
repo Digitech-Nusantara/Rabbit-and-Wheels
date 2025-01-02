@@ -20,7 +20,7 @@
 			  @if($category['name'] == 'Home')
 				@continue
 			  @else
-				  <input type="checkbox" name="category[]" value="{{ $category['id'] }}" class="h-4 w-4 text-green-600 border-gray-300 rounded focus:ring-green-500" {{ in_array($category['id'], (array) request('category', [])) ? 'checked' : '' }}>
+				  <input type="checkbox" name="cat[]" value="{{ $category['id'] }}" class="h-4 w-4 text-green-600 border-gray-300 rounded focus:ring-green-500" {{ in_array($category['id'], (array) request('category', [])) ? 'checked' : '' }}>
 				  <span class="text-gray-600">{{ $category['name'] }}</span>
 			  @endif
             </li>
@@ -47,7 +47,7 @@
 				@case('All Accessories')
 					@continue(2)
 				@default
-				  <input type="checkbox" name="subcategory[]" value="{{ $subcategory['id'] }}" class="h-4 w-4 text-green-600 border-gray-300 rounded focus:ring-green-500" {{ in_array($subcategory['id'], request('subcategory', [])) ? 'checked' : '' }}>
+				  <input type="checkbox" name="subcat[]" value="{{ $subcategory['id'] }}" class="h-4 w-4 text-green-600 border-gray-300 rounded focus:ring-green-500" {{ in_array($subcategory['id'], request('subcategory', [])) ? 'checked' : '' }}>
 				  <span class="text-gray-600">{{ $subcategory['name'] }}</span>
 					@break
 			  @endswitch

@@ -17,6 +17,7 @@ Route::get('/search', [ProductController::class, 'search']);
 Route::get('/cart', [CartController::class, 'showCart']);
 Route::post('/cart/add', [CartController::class, 'addToCart']);
 Route::post('/cart/remove', [CartController::class, 'removeFromCart']);
+Route::post('/cart/checkout', [CartController::class, 'checkout']);
 
 Route::get('/sesi', [AuthController::class, 'index'])->name('auth');
 Route::post('/sesi', [AuthController::class, 'login']);
