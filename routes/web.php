@@ -36,6 +36,10 @@ Route::middleware(['auth', 'role:user'])->get('/landing', function () {
 
 // Rute untuk resource categories (hanya dapat diakses jika terautentikasi)
 Route::middleware('auth')->resource('categories', CategoryController::class);
+Route::get('/products', [ProductController::class, 'index'])->name('products.index');
+Route::resource('products', ProductController::class);
+
+
 
 
 Route::get('/{category?}', ProductController::class);
