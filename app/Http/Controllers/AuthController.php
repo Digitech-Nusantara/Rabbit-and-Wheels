@@ -26,12 +26,17 @@ class AuthController extends Controller
 
         if (!$user) {
             // Redirect to registration if the user doesn't exist
-            return redirect()->route('registrasi')->with('error', 'User not found. Please register.');
+            return redirect()->route('register')->with('error', 'User not found. Please register.');
         }
 
         // Attempt to log in the user
         if (Auth::attempt(['email' => $request->email, 'password' => $request->password])) {
-            return redirect()->route('dashboard'); // Redirect to home or dashboard
+            // Redirect based on user role
+            if ($user->role === 'admin') {
+                return redirect()->route('dashboard'); // Admin dashboard
+            } else {
+                return redirect()->route('register'); // User landing page
+            }
         }
 
         // If login fails
@@ -64,11 +69,12 @@ class AuthController extends Controller
             'phone_number',
         ]) + [
             'password' => bcrypt($request->password),
+            'role' => $request->role ?? 'user', // Default role as 'user'
         ]);
 
         // Log in the user
         Auth::login($user);
 
-        return redirect()->route('auth'); // Redirect to home or dashboard after successful registration
+        return redirect()->route('login'); // Redirect to home or dashboard after successful registration
     }
 }

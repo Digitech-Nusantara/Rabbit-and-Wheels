@@ -66,7 +66,7 @@
             cursor: pointer;
         }
         .submit-button:hover {
-            background-color: #0056b3;
+            background-color: #1759a0;
         }
         .login-link {
             text-align: center;
@@ -74,7 +74,7 @@
         }
         .login-link a {
             text-decoration: none;
-            color: #007BFF;
+            color: #002347;
         }
         .login-link a:hover {
             text-decoration: underline;
@@ -124,7 +124,7 @@
             <button type="submit" class="submit-button">Register</button>
         </form>
         <div class="login-link">
-            <p>Already have an account? <a href="{{ route('auth') }}">Login</a></p>
+            <p>Already have an account? <a href="{{ route('login') }}">Login</a></p>
         </div>
     </div>
 </body>

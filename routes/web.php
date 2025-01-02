@@ -19,14 +19,32 @@ Route::post('/cart/add', [CartController::class, 'addToCart']);
 Route::post('/cart/remove', [CartController::class, 'removeFromCart']);
 Route::post('/cart/checkout', [CartController::class, 'checkout']);
 
-Route::get('/sesi', [AuthController::class, 'index'])->name('auth');
-Route::post('/sesi', [AuthController::class, 'login']);
-Route::get('/reg', [AuthController::class, 'create'])->name('register');
-Route::post('/reg', [AuthController::class, 'register']);
-Route::middleware('auth')->get('/dashboard', function () {
+// Rute untuk halaman login
+Route::get('/login', [AuthController::class, 'index'])->name('login');
+Route::post('/login', [AuthController::class, 'login']);
+
+// Rute untuk halaman registrasi
+Route::get('/register', [AuthController::class, 'create'])->name('register');
+Route::post('/register', [AuthController::class, 'register']);
+
+// Rute untuk admin dashboard (dengan middleware role:admin)
+Route::middleware(['auth', 'role:admin'])->get('/dashboard', function () {
     return view('halaman_auth/dashboard'); 
 })->name('dashboard');
-Route::resource('categories', CategoryController::class);
+
+// Rute untuk user landing page (dengan middleware role:user)
+Route::middleware(['auth', 'role:user'])->get('/landing', function () {
+    return view('halaman_auth/landing'); 
+})->name('landing');
+
+// Rute untuk resource categories (hanya dapat diakses jika terautentikasi)
+Route::middleware('auth')->resource('categories', CategoryController::class);
+Route::get('/products', [ProductController::class, 'index'])->name('products.index');
+Route::resource('products', ProductController::class);
+
+
+
+
 
 Route::get('/{category?}', ProductController::class);
 Route::get('/{category?}/{productSlug?}', ProductController::class);
