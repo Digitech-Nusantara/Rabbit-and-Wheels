@@ -29,6 +29,8 @@ class ProductController extends Controller
 		$cat_id = 0;
 		$title = '';
 		$view = '';
+		$categories = Category::select('*')->get();
+		$subcategories = Subcategory::select('*')->get();
 
 		if ($category === null) {
 			$category = 'home';
@@ -106,8 +108,13 @@ class ProductController extends Controller
 				$newest = null;
 				break;
 		}
+		
+		if (request('category') !== null) {
+			$products = $this->filter(request());
+			return view('all-items-page', ['title' => 'All Items - Syrious', 'products' => $products, 'categories' => $categories, 'subcategories' => $subcategories]);
+		}
 
-		return view($view, ['title' => $title, 'products' => $products, 'newest' => $newest]);
+		return view($view, ['title' => $title, 'products' => $products, 'newest' => $newest, 'categories' => $categories, 'subcategories' => $subcategories]);
 	}
 
 	private function getDetailProduct($slug) {
@@ -146,5 +153,35 @@ class ProductController extends Controller
 
 		// Return a JSON response to the front-end
 		return response()->json($products);
+	}
+	
+	private function filter(Request $request) {
+
+		 $categories = $request->input('category');
+		 $subcategories = $request->input('subcategory');
+		// Build the query to get filtered products
+        $query = Product::query();
+		$query->join('subcategories', 'subcategories.id', '=', 'products.subcategory_id')
+			->join('categories', 'categories.id', '=', 'subcategories.category_id');
+
+        // Apply category filter if selected
+		if ($request->has('subcategory') && !empty($request->subcategory)) {
+			$query->whereIn('subcategories.id', $subcategories);
+		}
+
+		if ($request->has('category') && !empty($request->category)) {
+			$query->whereIn('categories.id', $categories);
+		}
+
+		// Debug SQL query
+		//dd($query->toSql(), $query->getBindings());
+
+		// Get the filtered products
+		$products = $query->paginate(8);
+
+		$products->appends(['category' => $categories]);
+		$products->appends(['subcategory' => $subcategories]);
+
+		return $products;
 	}
 }

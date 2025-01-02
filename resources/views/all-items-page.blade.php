@@ -2,7 +2,7 @@
 
 	<x-slot:title>{{ $title }}</x-slot:title>
     {{-- side-filter --}}
-    <x-side-filter></x-side-filter>
+    <x-side-filter :categories="$categories" :subcategories="$subcategories"/>
     {{-- side-filter --}}
 
 <!-- product list -->
@@ -21,7 +21,7 @@
 				@endforelse
 			</div>
 			<div class="my-5">
-				{{ $products->links() }}
+				{{ $products->appends(request()->input())->links() }}
 			</div>
         </div>
     </div>
