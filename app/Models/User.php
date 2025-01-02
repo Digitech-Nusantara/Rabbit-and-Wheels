@@ -19,11 +19,13 @@ class User extends Authenticatable
     protected $fillable = [
         'name',
         'username',
-        'address',
         'email',
-        'phone_number',
         'password',
+        'address',
+        'phone_number',
+        'role',
     ];
+    
 
     /**
      * The attributes that should be cast to native types.

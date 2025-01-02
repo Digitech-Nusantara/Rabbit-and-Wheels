@@ -38,8 +38,13 @@
         <h3 class="text-center text-white">Dashboard</h3>
         <a href="#">Home</a>
         <a href="{{ route('categories.index') }}">Category</a>
+routing
         <a href="#">Product</a>
         <a href="#">Profile</a>
+
+        <a href="{{ route('products.index') }}">Product</a>
+        <a href="{{ route('login') }}">Log Out</a>
+main
     </div>
 
     <div class="content" style="margin-left: 250px;">

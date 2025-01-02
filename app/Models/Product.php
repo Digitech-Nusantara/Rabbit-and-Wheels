@@ -8,19 +8,37 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class Product extends Model
 {
-	public function subcategories(): BelongsTo {
-		return $this->belongsTo(Subcategory::class);
-	}
+    // Kolom yang dapat diisi melalui form
+    protected $fillable = [
+        'code',
+        'name',
+        'slug',
+        'price',
+        'size',
+        'color',
+        'in_stock',
+        'photo',
+        'description',
+        'subcategory_id',
+    ];
 
-	public function discounts(): BelongsTo {
-		return $this->belongsTo(Discount::class);
-	}
+    // Relasi dengan subkategori
+    public function subcategories(): BelongsTo {
+        return $this->belongsTo(Subcategory::class);
+    }
 
-	public function transaction_details(): HasMany {
-		return $this->hasMany(TransactionDetails::class, 'product_id');
-	}
+    // Relasi dengan diskon
+    public function discounts(): BelongsTo {
+        return $this->belongsTo(Discount::class);
+    }
 
-	public function reviews(): HasMany {
-		return $this->hasMany(Review::class, 'product_id');
-	}
+    // Relasi dengan detail transaksi
+    public function transaction_details(): HasMany {
+        return $this->hasMany(TransactionDetail::class, 'product_id');
+    }
+
+    // Relasi dengan ulasan/reviews
+    public function reviews(): HasMany {
+        return $this->hasMany(Review::class, 'product_id');
+    }
 }

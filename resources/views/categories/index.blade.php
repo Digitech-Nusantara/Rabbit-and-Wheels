@@ -1,4 +1,8 @@
+routing
 @extends('halaman_auth.dashboard')  
+
+@extends('halaman_auth.dashboard')  <!-- Menyesuaikan dengan folder yang benar -->
+main
 
 @section('title', 'Categories')
 

@@ -25,6 +25,94 @@ class ProductController extends Controller
 		return $data;
     }
 
+	//START CODE CRUD
+	public function index()
+	{
+		$products = Product::all(); // Ambil semua produk dari database
+		return view('products.index', compact('products')); // Tampilkan ke view
+	}
+	
+
+public function store(Request $request)
+{
+    // Validasi input
+    $validatedData = $request->validate([
+        'code' => 'required|string|unique:products|max:255',
+        'name' => 'required|string|max:255',
+        'price' => 'required|integer|min:0',
+        'size' => 'required|integer',
+        'color' => 'required|string|max:50',
+        'in_stock' => 'required|string|max:3', // 'Yes' atau 'No'
+        'photo' => 'required|file|mimes:jpeg,png,jpg|max:10240', // Maks 10 MB
+        'description' => 'required|string',
+        'subcategory_id' => 'required|exists:subcategories,id',
+    ]);
+
+    // Generate slug dari nama produk
+    $validatedData['slug'] = Str::slug($validatedData['name']);
+
+    // Simpan file foto
+    $photoPath = $request->file('photo')->store('photos/products', 'public');
+    $validatedData['photo'] = $photoPath;
+
+    // Simpan data ke database
+    Product::create($validatedData);
+
+    // Redirect ke halaman index dengan pesan sukses
+    return redirect()->route('products.index')->with('success', 'Product berhasil ditambahkan.');
+}
+
+	public function create()
+	{
+    $subcategories = Subcategory::all(); // Ambil semua subkategori dari tabel
+    return view('products.create', compact('subcategories'));
+	}
+
+
+
+	public function edit(Product $product)
+	{
+    return view('products.edit', compact('product'));
+	}
+    
+	public function update(Request $request, Product $product)
+{
+    $request->validate([
+        'code' => 'required|string|unique:products,code,' . $product->id,
+        'name' => 'required|string|max:255',
+        'slug' => 'required|string|max:255',
+        'price' => 'required|integer|min:0',
+        'size' => 'required|integer',
+        'color' => 'required|string|max:255',
+        'in_stock' => 'required|string|max:255',
+        'photo' => 'nullable|file|mimes:jpeg,png,jpg|max:10240',
+        'description' => 'required|string',
+        'subcategory_id' => 'required|exists:subcategories,id',
+    ]);
+
+    // Update foto jika diunggah
+    if ($request->hasFile('photo')) {
+        $photoPath = $request->file('photo')->store('photos/products', 'public');
+        $product->update(array_merge($request->all(), ['photo' => $photoPath]));
+    } else {
+        $product->update($request->all());
+    }
+
+    return redirect()->route('products.index')->with('success', 'Product berhasil diperbarui.');
+	}
+
+	public function destroy(Product $product)
+	{
+    if ($product->photo) {
+        \Illuminate\Support\Facades\Storage::disk('public')->delete($product->photo);
+    }
+    $product->delete();
+
+    return redirect()->route('products.index')->with('success', 'Product berhasil dihapus.');
+	}
+
+//END CODE CRUD
+
 	private function getDataProducts($category): View {
 		$cat_id = 0;
 		$title = '';
