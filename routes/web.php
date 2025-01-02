@@ -42,5 +42,6 @@ Route::resource('products', ProductController::class);
 
 
 
+
 Route::get('/{category?}', ProductController::class);
 Route::get('/{category?}/{productSlug?}', ProductController::class);
