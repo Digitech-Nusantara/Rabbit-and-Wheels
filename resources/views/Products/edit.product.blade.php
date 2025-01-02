@@ -1,4 +1,4 @@
-@extends('halaman_auth.dashboard') 
+git@extends('halaman_auth.dashboard') 
 
 @section('content')
 <div class="container">

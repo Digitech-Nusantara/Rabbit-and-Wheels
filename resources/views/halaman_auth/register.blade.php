@@ -66,7 +66,7 @@
             cursor: pointer;
         }
         .submit-button:hover {
-            background-color: #0056b3;
+            background-color: #1759a0;
         }
         .login-link {
             text-align: center;
@@ -74,7 +74,7 @@
         }
         .login-link a {
             text-decoration: none;
-            color: #007BFF;
+            color: #002347;
         }
         .login-link a:hover {
             text-decoration: underline;
