@@ -39,7 +39,7 @@
         <a href="#">Home</a>
         <a href="{{ route('categories.index') }}">Category</a>
         <a href="{{ route('products.index') }}">Product</a>
-        <a href="#">Profile</a>
+        <a href="{{ route('login') }}">Log Out</a>
     </div>
 
     <div class="content" style="margin-left: 250px;">
