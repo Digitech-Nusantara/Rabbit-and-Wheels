@@ -18,6 +18,8 @@ class DatabaseSeeder extends Seeder
     {
 		// Calling some Seeder object to seeding the database after migrating database
 		$this->call([
+			UserSeeder::class,
+			CustomerSeeder::class,
 			CategorySeeder::class,
 			SubcategorySeeder::class,
 			ProductSeeder::class,

@@ -20,6 +20,7 @@ return new class extends Migration
 				table: 'products', indexName: 'transactions_details_product_id'
 			);
             $table->integer('qty');
+            $table->integer('price');
             $table->integer('subtotal_price');
             $table->timestamps();
         });

@@ -12,9 +12,12 @@ Route::get('/about', function () {
 	return view('about-us-page', ['title' => 'About Us - Syrious']);
 });
 
+Route::get('/search', [ProductController::class, 'search']);
+
 Route::get('/cart', [CartController::class, 'showCart']);
 Route::post('/cart/add', [CartController::class, 'addToCart']);
 Route::post('/cart/remove', [CartController::class, 'removeFromCart']);
+Route::post('/cart/checkout', [CartController::class, 'checkout']);
 
 // Rute untuk halaman login
 Route::get('/login', [AuthController::class, 'index'])->name('login');

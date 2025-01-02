@@ -2,7 +2,7 @@
 
 	<x-slot:title>{{ $title }}</x-slot:title>
     {{-- side-filter --}}
-    <x-side-filter></x-side-filter>
+    <x-side-filter :categories="$categories" :subcategories="$subcategories"/>
     {{-- side-filter --}}
 
     <!-- product list -->

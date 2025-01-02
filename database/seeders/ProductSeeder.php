@@ -29,7 +29,7 @@ class ProductSeeder extends Seeder
 		$response_list = $client->request('GET', 'https://apidojo-hm-hennes-mauritz-v1.p.rapidapi.com/products/list?country=us&lang=en&currentpage=0&pagesize=30&concepts=H%26M%20MAN', [
 			'headers' => [
 				'x-rapidapi-host' => 'apidojo-hm-hennes-mauritz-v1.p.rapidapi.com',
-				'x-rapidapi-key' => '7fe67b6b71msh70968ce61b4c323p143212jsn81b984d951df',
+				'x-rapidapi-key' => 'b38150932bmshea1d84731edfcb4p14448ejsn9ed09c4b3673',
 			],
 		]);
 		
@@ -45,7 +45,7 @@ class ProductSeeder extends Seeder
 			$response_detail = $client->request('GET', 'https://apidojo-hm-hennes-mauritz-v1.p.rapidapi.com/products/detail?lang=en&country=us&productcode='.$product['defaultArticle']['code'], [
 				'headers' => [
 					'x-rapidapi-host' => 'apidojo-hm-hennes-mauritz-v1.p.rapidapi.com',
-					'x-rapidapi-key' => '7fe67b6b71msh70968ce61b4c323p143212jsn81b984d951df',
+					'x-rapidapi-key' => 'b38150932bmshea1d84731edfcb4p14448ejsn9ed09c4b3673',
 				],
 			]);
 			// Get and format data list product as response from API

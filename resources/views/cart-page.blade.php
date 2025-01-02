@@ -29,6 +29,12 @@
         </div>
       </div>
     </div>
+	<form action="/cart/checkout" method="POST">
+	@csrf
+		<input type="hidden" name="product_id" value="{{ $id }}">
+		<input type="hidden" name="qty" value="{{ $details['quantity'] }}">
+		<input type="hidden" name="price" value="{{ $details['price'] }}">
+		<input type="hidden" name="subtotal" value"{{ $details['subtotal'] }}">
 	@endforeach
 	@endif
 	
@@ -38,7 +44,11 @@
         <p class="text-lg font-semibold text-gray-800">Total</p>
         <p class="text-lg font-bold text-gray-800">${{ session('total') }}</p>
       </div>
-      <button class="mt-4 w-full bg-slate-700 text-white py-2 rounded hover:bg-slate-900">Checkout</button>
+		<input type="hidden" name="total_price" value="{{ session('total') }}">
+		<input type="hidden" name="total_payment" value="{{ session('total') }}">
+		<input type="hidden" name="payment_method" value="cash">
+		<button type="submit" class="mt-4 w-full bg-slate-700 text-white py-2 rounded hover:bg-slate-900">Checkout</button>
+	  </form>
     </div>
   </main>
 

@@ -117,6 +117,8 @@ public function store(Request $request)
 		$cat_id = 0;
 		$title = '';
 		$view = '';
+		$categories = Category::select('*')->get();
+		$subcategories = Subcategory::select('*')->get();
 
 		if ($category === null) {
 			$category = 'home';
@@ -153,7 +155,7 @@ public function store(Request $request)
 
 		switch($cat_id) {
 			case 1:
-				$products = Product::select(
+				$products = Product::filter(request(['search']))->select(
 						DB::raw('MIN(products.id) as id'),
 						DB::raw('MIN(products.code) as code'),
 						DB::raw('MIN(products.color) as color'),
@@ -168,7 +170,8 @@ public function store(Request $request)
 						'products.in_stock', 'products.description')
 					->orderBy('products.created_at', 'desc')
 					->paginate(8);
-				$newest = Product::select('products.name', 'products.photo', 'categories.name as category_name')
+				
+				$newest = Product::select('products.name', 'products.photo', 'products.slug','categories.name as category_name')
 					->join('subcategories', 'products.subcategory_id', '=', 'subcategories.id')
 					->join('categories', 'subcategories.category_id', '=', 'categories.id')
 					->orderBy('products.created_at', 'desc')->first();
@@ -193,8 +196,14 @@ public function store(Request $request)
 				$newest = null;
 				break;
 		}
+		
+		if (empty(request('category')) || empty(request('subcategory'))) {
+			return view($view, ['title' => $title, 'products' => $products, 'newest' => $newest, 'categories' => $categories, 'subcategories' => $subcategories]);
+		}
 
-		return view($view, ['title' => $title, 'products' => $products, 'newest' => $newest]);
+		$products = $this->filter(request());
+		return view('all-items-page', ['title' => 'All Items - Syrious', 'products' => $products, 'categories' => $categories, 'subcategories' => $subcategories]);
+
 	}
 
 	private function getDetailProduct($slug) {
@@ -210,6 +219,58 @@ public function store(Request $request)
 			->whereIn('subcategories.name', $subcategory)
 			->first();
 
-		return view('detail-'.Str::lower($category->name), ['title' => $category->name.' Details - Syrious', 'products' => $products, 'subcategory' => $subcategory]);
+		return view('detail-'.Str::lower($category->name), ['title' => $category->name . ' Details - Syrious', 'products' => $products, 'subcategory' => $subcategory]);
+	}
+
+	public function search(Request $request)
+	{
+		// If there's a search query
+		if ($request->has('search') && !empty($request->search)) {
+			$query = $request->search;
+
+			// Get products matching the search query
+			$products = Product::select('products.*', 'categories.name as category')
+				->join('subcategories', 'subcategories.id', '=', 'products.subcategory_id')
+				->join('categories', 'categories.id', '=', 'subcategories.category_id')
+				->where('products.name', 'like', '%' . $query . '%')
+				->orWhere('products.slug', 'like', '%' . $query . '%')
+				->limit(5)
+				->get(['products.id', 'products.name', 'products.slug', 'products.photo', 'category']); // Only return relevant fields
+		} else {
+			$products = []; // Return an empty array if no query
+		}
+
+		// Return a JSON response to the front-end
+		return response()->json($products);
+	}
+	
+	private function filter(Request $request) {
+
+		 $categories = $request->input('category');
+		 $subcategories = $request->input('subcategory');
+		// Build the query to get filtered products
+        $query = Product::query();
+		$query->join('subcategories', 'subcategories.id', '=', 'products.subcategory_id')
+			->join('categories', 'categories.id', '=', 'subcategories.category_id');
+
+        // Apply category filter if selected
+		if ($request->has('subcategory') && !empty($request->subcategory)) {
+			$query->whereIn('subcategories.id', $subcategories);
+		}
+
+		if ($request->has('category') && !empty($request->category)) {
+			$query->whereIn('categories.id', $categories);
+		}
+
+		// Debug SQL query
+		//dd($query->toSql(), $query->getBindings());
+
+		// Get the filtered products
+		$products = $query->paginate(8);
+
+		$products->appends(['category' => $categories]);
+		$products->appends(['subcategory' => $subcategories]);
+
+		return $products;
 	}
 }
