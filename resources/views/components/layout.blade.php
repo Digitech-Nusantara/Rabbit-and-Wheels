@@ -29,6 +29,8 @@
 		<link rel="stylesheet" href="{{ asset('css/landing-page.css') }}">
 	@endif
 
+	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+	<script src="{{ asset('js/script.js') }}"></script>
 </head>
 @if ($title = 'Cart - Syrious')
 	<body class="bg-gray-100 font-sans leading-normal tracking-normal">

@@ -65,7 +65,7 @@ class ProductController extends Controller
 
 		switch($cat_id) {
 			case 1:
-				$products = Product::select(
+				$products = Product::filter(request(['search']))->select(
 						DB::raw('MIN(products.id) as id'),
 						DB::raw('MIN(products.code) as code'),
 						DB::raw('MIN(products.color) as color'),
@@ -80,6 +80,7 @@ class ProductController extends Controller
 						'products.in_stock', 'products.description')
 					->orderBy('products.created_at', 'desc')
 					->paginate(8);
+				
 				$newest = Product::select('products.name', 'products.photo', 'categories.name as category_name')
 					->join('subcategories', 'products.subcategory_id', '=', 'subcategories.id')
 					->join('categories', 'subcategories.category_id', '=', 'categories.id')
@@ -123,5 +124,27 @@ class ProductController extends Controller
 			->first();
 
 		return view('detail-'.Str::lower($category->name), ['title' => $category->name.' Details - Syrious', 'products' => $products, 'subcategory' => $subcategory]);
+	}
+
+	public function search(Request $request)
+	{
+		// If there's a search query
+		if ($request->has('search') && !empty($request->search)) {
+			$query = $request->search;
+
+			// Get products matching the search query
+			$products = Product::select('products.*', 'categories.name as category')
+				->join('subcategories', 'subcategories.id', '=', 'products.subcategory_id')
+				->join('categories', 'categories.id', '=', 'subcategories.category_id')
+				->where('products.name', 'like', '%' . $query . '%')
+				->orWhere('products.slug', 'like', '%' . $query . '%')
+				->limit(5)
+				->get(['products.id', 'products.name', 'products.slug', 'products.photo', 'category']); // Only return relevant fields
+		} else {
+			$products = []; // Return an empty array if no query
+		}
+
+		// Return a JSON response to the front-end
+		return response()->json($products);
 	}
 }
