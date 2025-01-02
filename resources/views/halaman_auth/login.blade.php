@@ -84,7 +84,7 @@
 <body>
     <div class="login-container">
         <h2>Login</h2>
-        <form action="{{ route('auth') }}" method="POST">
+        <form action="{{ route('login') }}" method="POST">
             @csrf
             <div class="form-group">
                 <label for="email">Email address</label>
