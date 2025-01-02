@@ -58,7 +58,7 @@
         .submit-button {
             width: 100%;
             padding: 10px;
-            background-color: #007BFF;
+            background-color: royalblue;
             color: #fff;
             border: none;
             border-radius: 4px;
@@ -76,7 +76,7 @@
             text-decoration: none;
             color: #007BFF;
         }
-        .register-link a:hover {
+        .register-link git a:hover {
             text-decoration: underline;
         }
     </style>
