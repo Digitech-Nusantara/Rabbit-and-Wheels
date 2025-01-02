@@ -31,11 +31,11 @@
                             </div>
                         </div>
                     {{-- search --}}
-                    <a href="">
-                    <img src="../img/user.png" alt="user" width="36px" />
+                    <a href="/login">
+                    <img src="../img/user.png" alt="user" width="48px" />
                     </a>
                     <a href="/cart">
-                    <img src="../img/cart.png" alt="chart" width="36px" />
+                    <img src="../img/cart.png" alt="chart" width="48px" />
                     </a>
                 </div>
                 </div>
