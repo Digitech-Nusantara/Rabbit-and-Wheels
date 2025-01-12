@@ -20,7 +20,7 @@
 			  @if($category['name'] == 'Home')
 				@continue
 			  @else
-				  <input type="checkbox" name="cat[]" value="{{ $category['id'] }}" class="h-4 w-4 text-green-600 border-gray-300 rounded focus:ring-green-500" {{ in_array($category['id'], (array) request('category', [])) ? 'checked' : '' }}>
+				  <input type="checkbox" name="cat[]" value="{{ $category['id'] }}" class="h-4 w-4 text-green-600 border-gray-300 rounded focus:ring-green-500" {{ in_array($category['id'], (array) request('cat', [])) ? 'checked' : '' }}>
 				  <span class="text-gray-600">{{ $category['name'] }}</span>
 			  @endif
             </li>
