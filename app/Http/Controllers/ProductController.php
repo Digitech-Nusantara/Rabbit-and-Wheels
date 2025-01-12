@@ -251,7 +251,7 @@ public function store(Request $request)
 			->join('categories', 'categories.id', '=', 'subcategories.category_id');
 
         // Apply category filter if selected
-		if ($request->has('category') && !empty($request->category)) {
+		if (!empty($request->category)) {
 			$query->whereIn('categories.id', $categories);
 		}
 
@@ -261,7 +261,7 @@ public function store(Request $request)
 		// Get the filtered products
 		$products = $query->paginate(8);
 
-		$products->appends(['category' => $categories]);
+		$products->appends(['cat' => $categories]);
 
 		return $products;
 	}
