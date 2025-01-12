@@ -6,14 +6,21 @@ use App\Models\Subcategory;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\PdfController;
 use Illuminate\Support\Facades\Route;
   
+// Rute untuk halaman about
 Route::get('/about', function () {
 	return view('about-us-page', ['title' => 'About Us - Syrious']);
 });
 
+// Rute untuk searching
 Route::get('/search', [ProductController::class, 'search']);
 
+// Rute untuk cetak pdf
+Route::get('/generate-pdf', PdfController::class);
+
+// Rute untuk halaman keranjang
 Route::get('/cart', [CartController::class, 'showCart']);
 Route::post('/cart/add', [CartController::class, 'addToCart']);
 Route::post('/cart/remove', [CartController::class, 'removeFromCart']);
