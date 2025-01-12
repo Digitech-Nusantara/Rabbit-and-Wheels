@@ -7,6 +7,7 @@ use App\Http\Controllers\ProductController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\PdfController;
+use App\Http\Controllers\HomeController;
 use Illuminate\Support\Facades\Route;
   
 // Rute untuk halaman about
@@ -48,10 +49,6 @@ Route::middleware(['auth', 'role:user'])->get('/landing', function () {
 Route::middleware('auth')->resource('categories', CategoryController::class);
 Route::get('/products', [ProductController::class, 'index'])->name('products.index');
 Route::resource('products', ProductController::class);
-
-
-
-
 
 Route::get('/{category?}', ProductController::class);
 Route::get('/{category?}/{productSlug?}', ProductController::class);
