@@ -17,19 +17,19 @@ class SubcategorySeeder extends Seeder
 		// An array filled by subcategories
 		$subcategories = [
 			'Unknown',
-			'Hoodie', 'Jacket', 'Shirt', 'Pants', 'Shorts', 'Sock', 'Sweater', 'All Clothes',
+			'Hoodie', 'Jacket', 'Shirt', 'Pants', 'Shorts', 'Sock', 'Sweater', 'Dress', 'All Clothes',
 			'Sneaker', 'Boot', 'Slipper', 'All Shoes',
-			'Hat & Cap', 'Bag', 'Sunglasses', 'Gloves', 'Scarf', 'All Accessories'
+			'Hat & Cap', 'Bag', 'Sunglasses', 'Gloves', 'Jewellery', 'Watch', 'All Accessories'
 		];
 		
 		// Seeding database with creating some Subcategory object
 		for ($i = 0; $i < count($subcategories); $i++) {
 			// Assign each subcategory with its own category
-			if ($i >= 1 && $i <= 8) {
+			if ($i >= 1 && $i <= 9) {
 				$category_id = 2;
-			} else if ($i >= 9 && $i <= 12) {
+			} else if ($i >= 10 && $i <= 13) {
 				$category_id = 3;
-			} else if ($i >= 13 && $i <= 18) {
+			} else if ($i >= 14 && $i <= 20) {
 				$category_id = 4;
 			} else {
 				$category_id = 1;

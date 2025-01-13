@@ -36,6 +36,9 @@
 		<input type="hidden" name="price" value="{{ $details['price'] }}">
 		<input type="hidden" name="subtotal" value"{{ $details['subtotal'] }}">
 	@endforeach
+    <div class="bg-white rounded-lg shadow-lg p-6 mt-6 flex justify-between items-center">
+		<a href="/generate-pdf" target="_blank" class="mt-4 w-full bg-slate-700 text-white py-2 rounded hover:bg-slate-900 text-center">Cetak PDF</a>
+	</div>
 	@endif
 	
     <!-- Summary Section -->

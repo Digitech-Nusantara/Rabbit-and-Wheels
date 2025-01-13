@@ -80,6 +80,76 @@ class ProductSeeder extends Seeder
 				'created_at' => now(),
 				'updated_at' => now()
 			]);
-		}	
+		}
+
+		// Getting product data from another API (DummyJSON)
+		// List categories from DummyJSON
+		$categoriesApi = ['mens-shirts', 'mens-shoes', 'mens-watches', 'sunglasses', 'tops', 'womens-bag', 'womens-dresses', 'womens-jewellery', 'womens-shoes', 'womens-watches'];
+		foreach( $categoriesApi as $category ) {
+			// Replace content of variable $response_list with response from request to url DummyJSON API
+			$response_list = $client->request('GET', 'https://dummyjson.com/products/category/' . $category);
+
+			// Get data from API & format it into array
+			$data_list = json_decode($response_list->getBody(), true);
+
+			// Looping through data products from API
+			foreach ($data_list['products'] as $product) {
+				// Getting subcategories from database
+				$subcategories = DB::table('subcategories')->get();
+
+				// Give $subcategory_id an initial value
+				$subcategory_id = 0;
+
+				// Looping through subcategory
+				foreach ($subcategories as $subcategory) {
+					// Assign subcategory for each category from API with value from database
+					switch ($category) {
+						case 'mens-shirts':
+							$subcategory_id = 4;
+							break;
+						case 'womens-dresses':
+						case 'tops':
+							$subcategory_id = 9;
+							break;
+						case 'mens-shoes':
+						case 'womens-shoes':
+							$subcategory_id = 11;
+							break;
+						case 'mens-watches':
+						case 'womens-watches':
+							$subcategory_id = 20;
+							break;
+						case 'sunglasses':
+							$subcategory_id = 17;
+							break;
+						case 'womens-bag':
+							$subcategory_id = 16;
+							break;
+						case 'womens-jewellery':
+							$subcategory_id = 19;
+							break;
+						default:
+							$subcategory_id = 1;
+							break;
+					}
+				}
+
+				// Inserting product data into database with creating Product object
+				Product::create([
+					'name' => $product['title'],
+					'code' => $product['sku'],
+					'slug' => Str::of($product['title'])->slug('-'),
+					'price' => $product['price'],
+					'size' => 0,
+					'color' => '000000',
+					'in_stock' => $product['stock'] != 0 ? 'In Stock' : 'Not Available',
+					'photo' => $product['images'][0],
+					'description' => $product['description'],
+					'subcategory_id' => $subcategory_id,
+					'created_at' => now(),
+					'updated_at' => now()
+				]);
+			}
+		}
 	}
 }

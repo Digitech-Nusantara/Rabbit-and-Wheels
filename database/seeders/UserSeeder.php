@@ -19,7 +19,7 @@ class UserSeeder extends Seeder
 			'address' => 'Unknown',
 			'email' => 'root@root.com',
 			'phone_number' => '08xxxxxxxxxx',
-			'password' => 'root'
+			'password' => 'rootroot'
 		]);
     }
 }

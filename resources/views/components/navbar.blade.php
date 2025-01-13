@@ -33,7 +33,7 @@
 									</div>
 								</div>
 								{{-- search --}}
-								<a href="">
+								<a href="/login">
 									<img src="../img/user.png" alt="user" width="36px" />
 								</a>
 								<a href="/cart">
